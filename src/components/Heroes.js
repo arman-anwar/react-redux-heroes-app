@@ -1,5 +1,4 @@
 import React from "react";
-import { location } from "react-router";
 import { connect } from "react-redux";
 import { fetchHeroes, delHero } from "../actions/heroesAction";
 import { addNav } from "../actions/navAction";

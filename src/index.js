@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
-import store from "./store";
+import configureStore from "./configureStore";
 import { Provider } from "react-redux";
 import "font-awesome/css/font-awesome.css";
 import "./style.css";
@@ -12,7 +12,7 @@ import "./style.css";
 //const store = store();
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={configureStore}>
     <App />
   </Provider>,
   document.getElementById("root")

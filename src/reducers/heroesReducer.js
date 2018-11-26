@@ -5,7 +5,7 @@ const initialState = {
   item: {}
 };
 
-export default function(state = initialState, action) {
+const heroesReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_HEROES:
       return {
@@ -30,4 +30,6 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default heroesReducer;

@@ -49,3 +49,7 @@ i {
   float: right;
   padding: 5px 12px;
 }
+
+.react-autosuggest__suggestions-container--open {
+  top: 33px;
+}
