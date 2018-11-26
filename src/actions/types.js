@@ -1,0 +1,9 @@
+export const FETCH_POSTS = "FETCH_POSTS";
+export const NEW_POSTS = "NEW_POSTS";
+export const FETCH_HEROES = "FETCH_HEROES";
+export const ADD_HERO = "ADD_HERO";
+export const DEL_HERO = "DEL_HERO";
+export const GET_HERO = "GET_HERO";
+export const UPDATE_HERO = "UPDATE_HERO";
+export const NEW_NAV = "NEW_NAV";
+export const FETCH_NAV = "FETCH_NAV";
