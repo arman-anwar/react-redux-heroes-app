@@ -4,8 +4,13 @@ import { fetchHeroes } from "../actions/heroesAction";
 import PropTypes from "prop-types";
 import Autosuggest from "react-autosuggest";
 import { withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const renderSuggestion = suggestion => <div>{suggestion.name}</div>;
+
+const clearStyle = {
+  clear: "both"
+};
 
 class SearchHero extends React.Component {
   constructor() {
@@ -64,8 +69,22 @@ class SearchHero extends React.Component {
       onChange: this.onChange
     };
 
+    const topHeroes = this.props.heroes.slice(0, 4).map(hero => (
+      <NavLink
+        className="topHeroes"
+        to={"heroes/detail/" + hero.id}
+        key={hero.id}
+      >
+        <div>
+          <span> {hero.name}</span>
+        </div>
+      </NavLink>
+    ));
+
     return (
       <div className="container">
+        {topHeroes}
+        <div style={clearStyle}> &nbsp; </div>
         <h3> Search Heroes</h3>
         <Autosuggest
           suggestions={suggestions}

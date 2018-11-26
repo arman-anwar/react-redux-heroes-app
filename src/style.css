@@ -53,3 +53,11 @@ i {
 .react-autosuggest__suggestions-container--open {
   top: 33px;
 }
+
+.topHeroes div {
+  float: left;
+  padding: 50px;
+  background-color: #607d8b;
+  margin: 50px;
+  color: white;
+}
