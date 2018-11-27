@@ -7,3 +7,4 @@ export const GET_HERO = "GET_HERO";
 export const UPDATE_HERO = "UPDATE_HERO";
 export const NEW_NAV = "NEW_NAV";
 export const FETCH_NAV = "FETCH_NAV";
+export const PREV_NAV = "PREV_NAV";

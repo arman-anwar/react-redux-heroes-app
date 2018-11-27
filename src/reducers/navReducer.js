@@ -1,4 +1,4 @@
-import { NEW_NAV, FETCH_NAV } from "../actions/types";
+import { NEW_NAV, FETCH_NAV, PREV_NAV } from "../actions/types";
 
 const initialState = {
   items: [],
@@ -16,6 +16,15 @@ export default function(state = initialState, action) {
     case FETCH_NAV:
       return {
         ...state
+      };
+
+    case PREV_NAV:
+      let a = state.items;
+      let temp = a[a.length - 2];
+      console.log("PREV_NAV >> ", a, temp);
+      return {
+        items: [...state.items],
+        item: temp
       };
 
     default:

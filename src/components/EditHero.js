@@ -2,14 +2,16 @@ import React from "react";
 import { getHero, updateHero } from "../actions/heroesAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addNav } from "../actions/navAction";
+import { addNav, prevNav } from "../actions/navAction";
 import ShowNav from "./ShowNav";
+import { NavLink } from "react-router-dom";
 
 class EditHero extends React.Component {
   componentWillMount() {
     console.log("componentWillMount", this.props.match.params.id);
     this.props.getHero(this.props.match.params.id);
     this.props.addNav("/heroes/details/" + this.props.match.params.id);
+    this.props.prevNav();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,6 +43,14 @@ class EditHero extends React.Component {
             ref="heroname"
           />
           &nbsp;&nbsp;&nbsp;
+          <NavLink
+            className="nav-item nav-link"
+            exact
+            activeClassName="active"
+            to={"" + this.props.prevLink}
+          >
+            Back
+          </NavLink>
           <button type="submit"> Save </button>
         </form>
         <ShowNav />
@@ -51,17 +61,20 @@ class EditHero extends React.Component {
 
 EditHero.propTypes = {
   id: PropTypes.number,
+  prevLink: PropTypes.string,
   hero: PropTypes.object,
   getHero: PropTypes.func.isRequired,
   updateHero: PropTypes.func.isRequired,
-  addNav: PropTypes.func.isRequired
+  addNav: PropTypes.func.isRequired,
+  prevNav: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  hero: state.heroes.item
+  hero: state.heroes.item,
+  prevLink: state.nav.item
 });
 
 export default connect(
   mapStateToProps,
-  { getHero, updateHero, addNav }
+  { getHero, updateHero, addNav, prevNav }
 )(EditHero);
