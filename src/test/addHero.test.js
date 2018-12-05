@@ -19,8 +19,8 @@ describe("tests for AddHero", () => {
   });
 
   it("Load AddHero page", () => {
-    const div = wrapper.find("form").length;
-    console.log(wrapper.debug());
+    // const div = wrapper.find("form").length;
+    //    console.log(wrapper.debug());
     expect(wrapper.find("input").length).toBe(1);
   });
 });
