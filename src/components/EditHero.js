@@ -8,14 +8,17 @@ import { NavLink } from "react-router-dom";
 
 class EditHero extends React.Component {
   componentWillMount() {
-    console.log("componentWillMount", this.props.match.params.id);
-    this.props.getHero(this.props.match.params.id);
-    this.props.addNav("/heroes/details/" + this.props.match.params.id);
-    this.props.prevNav();
+    // console.log("componentWillMount", this.props.match.params.id);
+    this.props.dispatch(getHero(this.props.match.params.id));
+    this.props.dispatch(
+      addNav("/heroes/details/" + this.props.match.params.id)
+    );
+    this.props.dispatch(prevNav());
   }
 
   componentWillReceiveProps(nextProps) {
-    this.refs.heroname.value = nextProps.hero.name;
+    // console.log("EditHero nextProps", nextProps.hero);
+    if (nextProps.hero) this.refs.heroname.value = nextProps.hero.name;
   }
 
   handleSubmit = e => {
@@ -24,7 +27,7 @@ class EditHero extends React.Component {
       id: this.props.hero.id,
       name: this.refs.heroname.value
     };
-    this.props.updateHero(hero);
+    this.props.dispatch(updateHero(hero));
   };
 
   render() {
@@ -60,13 +63,13 @@ class EditHero extends React.Component {
 }
 
 EditHero.propTypes = {
-  id: PropTypes.number,
-  prevLink: PropTypes.string,
-  hero: PropTypes.object,
-  getHero: PropTypes.func.isRequired,
-  updateHero: PropTypes.func.isRequired,
-  addNav: PropTypes.func.isRequired,
-  prevNav: PropTypes.func.isRequired
+  //  id: PropTypes.number.isRequired,
+  prevLink: PropTypes.string.isRequired,
+  hero: PropTypes.object
+  //  getHero: PropTypes.func.isRequired,
+  //  updateHero: PropTypes.func.isRequired,
+  //  addNav: PropTypes.func.isRequired,
+  //  prevNav: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -74,7 +77,4 @@ const mapStateToProps = state => ({
   prevLink: state.nav.item
 });
 
-export default connect(
-  mapStateToProps,
-  { getHero, updateHero, addNav, prevNav }
-)(EditHero);
+export default connect(mapStateToProps)(EditHero);

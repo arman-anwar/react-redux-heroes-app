@@ -7,17 +7,19 @@ import { NavLink } from "react-router-dom";
 
 class Heroes extends React.Component {
   componentWillMount() {
-    console.log("componentWillMount");
-    this.props.fetchHeroes();
-    this.props.addNav("/heroes");
+    //    console.log("Heroes componentWillMount");
+    this.props.dispatch(fetchHeroes());
+    this.props.dispatch(addNav("/heroes"));
   }
 
   handleDelete = heroId => {
     //  console.log("handleDelete >> ", heroId);
-    this.props.delHero(heroId);
+    this.props.dispatch(delHero(heroId));
+    //  this.props.dispatch(fetchHeroes());
   };
 
   render() {
+    //    console.log("heroes", this.props.heroes);
     const postItems = this.props.heroes.map(post => (
       <li key={post.id}>
         <NavLink
@@ -45,9 +47,6 @@ class Heroes extends React.Component {
 }
 
 Heroes.propTypes = {
-  fetchHeroes: PropTypes.func.isRequired,
-  delHero: PropTypes.func.isRequired,
-  addNav: PropTypes.func.isRequired,
   heroes: PropTypes.array.isRequired,
   newHero: PropTypes.object
 };
@@ -57,7 +56,4 @@ const mapStateToProps = state => ({
   newHero: state.heroes.item
 });
 
-export default connect(
-  mapStateToProps,
-  { fetchHeroes, delHero, addNav }
-)(Heroes);
+export default connect(mapStateToProps)(Heroes);

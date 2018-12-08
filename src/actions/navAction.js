@@ -1,26 +1,25 @@
 import { NEW_NAV, FETCH_NAV, PREV_NAV } from "./types";
 
-export const fetchNav = () => dispatch => {
-  console.log("FETCH_NAV called");
-  dispatch({
+export const fetchNav = () => {
+  //  console.log("FETCH_NAV called");
+  return {
     type: FETCH_NAV,
     payload: true
-  });
+  };
 };
 
-export const addNav = navLink => dispatch => {
-  console.log("NEW_NAV called", navLink);
-  dispatch({
+export const addNav = navLink => {
+  ///  console.log("NEW_NAV called", navLink);
+  return {
     type: NEW_NAV,
     payload: navLink
-  });
-  dispatch(fetchNav());
+  };
 };
 
-export const prevNav = () => dispatch => {
-  console.log("PREV_NAV called");
-  dispatch({
+export const prevNav = () => {
+  //  console.log("PREV_NAV called");
+  return {
     type: PREV_NAV
-  });
-  dispatch(fetchNav());
+  };
+  //  dispatch(fetchNav());
 };

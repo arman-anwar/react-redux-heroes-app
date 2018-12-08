@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { addHero } from "../actions/heroesAction";
 
 class AddHero extends React.Component {
@@ -13,14 +12,7 @@ class AddHero extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const post = {
-      name: this.refs.heroname.value
-    };
-    //    console.log(post);
-
-    this.props.addHero(post);
-
-    // return false;
+    this.props.dispatch(addHero(this.refs.heroname.value));
   };
 
   render() {
@@ -42,12 +34,4 @@ class AddHero extends React.Component {
   }
 }
 
-AddHero.propTypes = {
-  addHero: PropTypes.func.isRequired
-  //  posts: PropTypes.array.isRequired
-};
-
-export default connect(
-  null,
-  { addHero }
-)(AddHero);
+export default connect(null)(AddHero);

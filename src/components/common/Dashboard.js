@@ -3,11 +3,11 @@ import SearchHero from "../SearchHero";
 import ShowNav from "../ShowNav";
 import { addNav } from "../../actions/navAction";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 class Dashboard extends React.Component {
   componentWillMount() {
-    this.props.addNav("/Dashboard");
+    this.props.dispatch(addNav("/Dashboard"));
   }
 
   render() {
@@ -20,11 +20,4 @@ class Dashboard extends React.Component {
   }
 }
 
-Dashboard.propTypes = {
-  addNav: PropTypes.func.isRequired
-};
-
-export default connect(
-  null,
-  { addNav }
-)(Dashboard);
+export default connect(null)(Dashboard);
