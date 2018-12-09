@@ -54,7 +54,7 @@ class SearchHero extends React.Component {
     });
   };
   componentWillMount() {
-    this.props.fetchHeroes();
+    this.props.dispatch(fetchHeroes());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -100,7 +100,6 @@ class SearchHero extends React.Component {
 }
 
 SearchHero.propTypes = {
-  fetchHeroes: PropTypes.func.isRequired,
   heroes: PropTypes.array.isRequired
 };
 
@@ -108,7 +107,4 @@ const mapStateToProps = state => ({
   heroes: state.heroes.items
 });
 
-export default connect(
-  mapStateToProps,
-  { fetchHeroes }
-)(withRouter(SearchHero));
+export default connect(mapStateToProps)(withRouter(SearchHero));

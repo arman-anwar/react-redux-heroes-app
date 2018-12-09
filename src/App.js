@@ -12,7 +12,7 @@ const history = createBrowserHistory();
 
 class App extends React.Component {
   componentWillReceiveProps(nextProps) {
-    console.log("sss", this.props.location);
+    //    console.log("sss", this.props.location);
     if (nextProps.location !== this.props.location) {
       // navigated!
     }
