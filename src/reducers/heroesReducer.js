@@ -61,7 +61,7 @@ const heroesReducer = (state = initialState, action) => {
     case UPDATE_HERO:
       let foundIndex = state.items.findIndex(x => x.id === action.payload.id);
       state.items[foundIndex] = action.payload;
-      // console.log("GET_HERO", action.payload, state.items, item);
+      // console.log("UPDATE_HERO", action.payload);
 
       return {
         items: [...state.items],

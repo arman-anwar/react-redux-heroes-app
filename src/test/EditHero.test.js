@@ -36,22 +36,37 @@ describe("EditHero", () => {
   });
 
   it("Load EditHero page", () => {
-    console.log("wrapper", wrapper);
+    // console.log("wrapper", wrapper);
 
-    expect(wrapper.find("div").length).toBe(1);
-    expect(wrapper.find("form").length).toBe(1);
-    expect(wrapper.find("input").length).toBe(1);
-    expect(wrapper.find("h2").length).toBe(1);
+    expect(wrapper.shallow().find("div").length).toBe(1);
+    expect(wrapper.shallow().find("form").length).toBe(1);
+    expect(wrapper.shallow().find("input").length).toBe(1);
+    expect(wrapper.shallow().find("h2").length).toBe(1);
   });
 
+  it("Get the hero", () => {
+    let action = store.getActions();
+    // console.log("action >>>>>", action);
+    expect(action[0].type).toEqual("GET_HERO");
+  });
   it("Edit the hero", () => {
+    const match = { params: { id: 14 } };
+
+    wrapper = shallow(<EditHero store={store} match={match} />);
+    // console.log("form >>", wrapper.find("form"));
+    const form = wrapper.shallow().find("form");
+    // console.log("form >>", form);
+    form.find("input").value = "Arman";
+
+    form.find("button").simulate("click");
+
     let action;
-    const form = wrapper.find("form");
+
     //  expect.assertions(1);
     //    instance.handleSubmit(null);
-    form.find("input").value = "Arman";
-    form.find("button").simulate("submit");
-    // action = configureStore.getState();
-    //  expect(action.heroes.items.length).toEqual(2);
+    // form.find("button").simulate("click");
+    action = store.getActions();
+    //    console.log("action", action);
+    expect(action[0].type).toEqual("GET_HERO");
   });
 });

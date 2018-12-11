@@ -15,10 +15,10 @@ export const fetchHeroes = () => {
 };
 
 export const addHero = heroData => {
-  //  console.log("ADD_HERO called");
+  // console.log("ADD_HERO called", heroData);
   return {
     type: ADD_HERO,
-    payload: heroData.name
+    payload: heroData
   };
 };
 

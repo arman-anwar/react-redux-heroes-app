@@ -34,8 +34,9 @@ describe("tests for SearchHero", () => {
   });
 
   it("Load SearchHero box", () => {
-    //    console.log("ssss", wrapper.html());
-    //    expect(wrapper.contains("h3")).toBe(true);
+    console.log("ssss", wrapper);
+
+    expect(wrapper.find("a")).toHaveLength(1);
   });
 
   it("Add a hero", () => {
