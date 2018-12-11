@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
     case PREV_NAV:
       let a = state.items;
       let temp = a[a.length - 2];
-      console.log("PREV_NAV >> ", a, temp);
+      // console.log("PREV_NAV >> ", a, temp);
       return {
         items: [...state.items],
         item: temp
