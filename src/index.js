@@ -9,6 +9,8 @@ import "font-awesome/css/font-awesome.css";
 import "./style.css";
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import history from './utils/history';
+import { ConnectedRouter } from 'connected-react-router/immutable';
 
 //const store = store();
 const persistor = persistStore(configureStore);
@@ -16,7 +18,7 @@ const persistor = persistStore(configureStore);
 ReactDOM.render(
   <Provider store={configureStore}>
     <PersistGate persistor={persistor}>
-      <App />
+        <App />
     </PersistGate>
   </Provider>,
   document.getElementById("root")
