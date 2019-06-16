@@ -1,6 +1,6 @@
 import {
   FETCH_HEROES,
-  ADD_HERO,
+  ADD_HERO_ASYNC,
   DEL_HERO,
   GET_HERO,
   UPDATE_HERO
@@ -24,7 +24,7 @@ const heroesReducer = (state = initialState, action) => {
         ...state,
         items: action.payload
       };
-    case ADD_HERO:
+    case ADD_HERO_ASYNC:
       let b = state.items.map(a => {
         return a.id;
       });

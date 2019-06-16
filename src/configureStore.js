@@ -3,6 +3,10 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import createSagaMiddleware from 'redux-saga'
+import { watchHeros } from './sagas/saga'
+
+const sagaMiddleware = createSagaMiddleware();
 
 const initialState = {};
 const middleWare = [thunk];
@@ -17,9 +21,11 @@ const configureStore = createStore(
   persistedReducer,
   initialState,
   compose(
-    applyMiddleware(...middleWare),
+    applyMiddleware(...middleWare, sagaMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
+
+sagaMiddleware.run(watchHeros);
 
 export default configureStore;
