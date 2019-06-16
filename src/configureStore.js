@@ -1,3 +1,7 @@
+/**
+ * Create the store with dynamic reducers
+ */
+
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import createReducer from './reducers';
@@ -9,23 +13,24 @@ import { fromJS } from 'immutable';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const initialState = {};
-const middleWare = [thunk];
+const middlewares = [sagaMiddleware, thunk];
 
 const persistConfig = {
   key: 'root',
   storage: storage,
 };
 
-const configureStore = createStore(
-  persistReducer(persistConfig, createReducer()),
-  fromJS(initialState),
-  compose(
-    applyMiddleware(...middleWare, sagaMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+export default function configureStore(initialState = {}) {
+  const store = createStore(
+    persistReducer(persistConfig, createReducer()),
+    fromJS(initialState),
+    compose(
+      applyMiddleware(...middlewares),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+  );
 
-sagaMiddleware.run(watchHeros);
+  sagaMiddleware.run(watchHeros);
+  return store;
+}
 
-export default configureStore;
