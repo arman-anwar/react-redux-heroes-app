@@ -15,7 +15,8 @@ import navReducer from "./navReducer";
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     heroes: heroesReducer,
-    nav: navReducer
+    nav: navReducer,
+    ...injectedReducers
     });
 
   // Wrap the root reducer and return a new root reducer with router state

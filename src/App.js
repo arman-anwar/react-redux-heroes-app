@@ -1,14 +1,13 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import {  Route, Switch } from "react-router-dom";
 import Dashboard from "./components/common/Dashboard";
-import createBrowserHistory from "history/createBrowserHistory";
+import history from "./utils/history";
 import HeaderNavContainer from "./components/HeaderNavContainer"; // eslint-disable-line import/no-named-as-default
-
 import "./App.css";
 import ListHeroes from "./components/ListHeroes";
 import EditHero from "./components/EditHero";
+import { ConnectedRouter } from "connected-react-router";
 
-const history = createBrowserHistory();
 
 class App extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -20,8 +19,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Router history={history}>
+        <ConnectedRouter history={history}>
           <div>
             <div className="container text-muted">
               <h2> Tour of Heroes</h2>
@@ -35,8 +33,7 @@ class App extends React.Component {
               <Route path="/heroes/detail/:id" component={EditHero} />
             </Switch>
           </div>
-        </Router>
-      </div>
+        </ConnectedRouter>
     );
   }
 }

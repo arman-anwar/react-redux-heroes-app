@@ -7,22 +7,26 @@ import configureStore from './configureStore';
 import { Provider } from "react-redux";
 import "font-awesome/css/font-awesome.css";
 import "./style.css";
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/lib/integration/react';
-// import history from './utils/history';
+// import { persistStore } from 'redux-persist';
+import history from './utils/history';
 
-const store = configureStore();
+const initialState = {};
+const store = configureStore(initialState, history);
+const MOUNT_NODE = document.getElementById('app');
+
+
+
 
 //const store = store();
-const persistor = persistStore(store);
+// const persistor = persistStore(store, iniState, () => {
+//   console.log('rehydration complete')
+// })
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
-        <App />
-    </PersistGate>
+      <App />
   </Provider>,
-  document.getElementById("root")
+  MOUNT_NODE
 );
 
 // If you want your app to work offline and load faster, you can change
